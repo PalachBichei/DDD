@@ -1,0 +1,18 @@
+fun main() {
+    val customerFactory = CustomerFactory()
+    val orderFactory = OrderFactory()
+    val customerRepository = CustomerRepository()
+    val orderRepository = OrderRepository()
+    val customer = customerFactory.createCustomer("1", "Emil Mikailov")
+    customerRepository.addCustomer(customer)
+    val product1 = Product("1", "Milk", 9.99)
+    val product2 = Product("2", "Cola", 19.99)
+    val products = listOf(product1, product2)
+    val address = Address("Amaizing street", "Moscow", "Russia")
+    val order = orderFactory.createOrder("1", customer, products, address)
+    orderRepository.addOrder(order)
+    val retrievedCustomer = customerRepository.getCustomerById("1")
+    val retrievedOrder = orderRepository.getOrderById("1")
+    println("Customer: $retrievedCustomer")
+    println("Order: $retrievedOrder")
+}
